@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+	<style>
+      body {
+        /*font-family: 'Lato', sans-serif;*/
+        font-weight: 300;
+        color: #e6e6e6;
+        font-size: 18px;
+		background: black;
+      }
+
+	  larger {
+		color: white;
+	  }
+	  
+	  a {
+		color: #e6e6e6;
+	  }
+	  
+      h1 {
+        font-size: 40px;
+        color: #e6e6e6;
+        font-weight: 400;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        margin-top: 50px;
+        margin-bottom: 10px;
+      }
+
+      .authors {
+        color: #222;
+        font-size: 24px;
+        font-weight: 300;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 40px;
+      }
+	  
+      .authorsnote {
+        font-size: 14px;
+        text-align: center;
+      }
+	  
+      .logoimg {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+	  
+	  .citation {
+	     background-color: black;
+		 color: white;
+	  }
+	  
+      .container-fluid {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+	  
+      .container {
+        margin-top: 30px;
+      }
+	  
+      #footer {
+        margin-bottom: 100px;
+      }
+	  
+      .thumbs {
+	    text-align: center;
+        margin-bottom: 20px;
+      }
+	  
+	  .thumb-heads {
+        margin-bottom: 20px;
+		border-color: black;
+      }
+	  
+      h2 {
+        font-size: 24px;
+        font-weight: 900;
+        border-bottom: 1px solid #999;
+        margin-bottom: 20px;
+      }
+	  
+      pre {
+        display: block;
+        padding: 9.5px;
+        margin: 0 0 10px;
+        font-size: 13px;
+        line-height: 1.42857143;
+        word-break: break-all;
+        word-wrap: break-word;
+        color: #333;
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+	  
+
+    </style>
+
+    <title>Mapping Informal Settlements in Developing Countries using Machine Learning with Noisy Annotations and Multi-resolution Multi-spectral Data</title>
+
+    <!-- SEO: the text snippet often shown beneath your search result below the title -->
+    <meta name="description" content="Mapping Informal Settlements in Developing Countries using Machine Learning with Noisy Annotations and Multi-resolution Multi-spectral Data">
+
+     <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Mapping Informal Settlements in Developing Countries using Machine Learning with Noisy Annotations and Multi-resolution Multi-spectral Data" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://phelber.github.io" /> 
+    <meta property="og:description" content="Detecting and mapping informal settlements." />
+  </head>
+  <body>
+    <div id="header" class="container">
+      <div class="row">
+        <div class="col">
+          <h1>Mapping Informal Settlements in Developing Countries
+          <br/> using Machine Learning with Noisy Annotations
+		  <br/> and Multi-resolution Multi-spectral Data</h1>
+		  <div class="authors">
+            <a href="mailto:patrick.helber@dfki.de">Patrick Helber*</a>,
+            <a href="mailto:bradley@robots.ox.ac.uk">Bradley Gram-Hansen*</a>,
+			<br/>
+            <a href="mailto:indhu.varatharajan@dlr.de">Indhu Varatharajan</a>,
+            <a href="mailto:fazam@hotmail.de">Faiza Azam</a>,
+			<a href="mailto:alejandro.coca_castro@kcl.ac.uk">Alejandro Coca-Castro</a>,
+            <br/>
+			<a href="mailto:veronika.kopackova@geology.cz">Veronika Kopackova</a>,
+            <a href="mailto:piotrb@robots.ox.ac.uk">Piotr Bilinski</a>
+            <div class="authorsnote">
+              <larger>* equal contribution</larger>
+            </div>
+          </div>
+		  <div class="text-center">
+             <a href="https://fdleurope.org/"><img  src="images/fdl-europe.png" width="15%" alt="FDL Europe"></a>
+          </div> 
+        </div>
+      </div>
+    </div>
+	
+    <div class="container">
+		  <h2>Over Half of the World's Population Lives in Absolute Poverty</h2>
+		  <div class="text-center">
+             <img class="img-fluid" src="images/Dharavi_India.jpg" alt="Informal Settlement vs. Formal Settlement">
+          </div> 
+		  People live in densely populated, unplanned and unstructured settlements. This leads to huge economic and social inequalities. This image shows the Dharavi slum in Mumbai, India and is provided by <a href="https://www.flickr.com/people/yglvoices/">YGLvoices</a> (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>).
+		  
+    </div>
+	
+    <div class="container" id="abstractdiv">
+      <h2>Description</h2>
+      <p class="abstract" align="justify">
+        <!--Detecting and mapping informal settlements encompasses several of the United Nations sustainable 
+		development goals. This is because informal settlements are home to the most socially and
+		economically vulnerable people on the planet. Thus, understanding where these settlements
+		are is of paramount importance to both government and non-government organizations (NGOs),
+		such as the United Nations Children’s Fund (UNICEF), who can use this information to deliver
+		effective social and economic aid. However, data regarding informal and formal settlements
+		is primarily unavailable and if available is often incomplete. This is due to the cost and 
+		complexity in gathering it on a large scale. Moreover, the definition of informal settlements
+		is also very broad, which makes it a non-trivial task to collect data and thus teach a machine
+		what to look for. Due to these limitations we openly provide two datasets with both high and low
+		resolution imagery from a variety of locations, with the accompanying annotations, enabling other
+		machine learning practitioners to compare methodologies. Then we propose an effective end-to-end 
+		framework that detects and maps the locations of informal settlements using only low-resolution, 
+		freely available, Sentinel-2 satellite imagery with noisy annotations. This is in contrast to 
+		previous studies that only use costly very-high resolution (VHR) satellite and aerial imagery. 
+		We also demonstrate a deep learning approach to detect informal settlements with VHR imagery for 
+		comparative purposes. In addition to this, we show how we can detect informal settlements by 
+		combining both domain knowledge and machine learning techniques,  to build a classifier that looks
+		for known roofing materials used in informal settlements. We evaluate and compare all three of the
+		proposed methods. -->
+		Detecting and mapping informal settlements encompasses several of the United Nations sustainable development goals. This is because informal settlements are home to the most socially and economically vulnerable people on the planet. Thus, understanding where these settlements are is of paramount importance to both government and non-government organizations (NGOs), such as the United Nations Children’s Fund (UNICEF), who can use this information to deliver effective social and economic aid. However, data regarding informal and formal settlements is primarily unavailable and if available is often incomplete. This is due to the cost and complexity in gathering it on a large scale. Moreover, the definition of informal settlements is also very broad, which makes it a non-trivial task to collect data and thus teach a machine what to look for. Due to these limitations we openly provide two datasets with both high and low resolution imagery from a variety of locations, with the accompanying annotations, enabling other machine learning practitioners to compare methodologies.
+Then we propose an effective end-to-end framework that detects and maps the locations of informal settlements using only low-resolution, freely available, Sentinel-2 satellite imagery with noisy annotations. This is in contrast to previous studies that only use costly very-high resolution (VHR) satellite and aerial imagery. We also demonstrate a deep learning approach to detect informal settlements with VHR imagery for comparative purposes. In addition to this, we show how we can detect informal settlements by combining both domain knowledge and machine learning techniques,  to build a classifier that looks for known roofing materials used in informal settlements. We evaluate and compare all three of the proposed methods.
+      </p>  
+    </div>
+
+    <div class="container">
+		<h2>Video</h2>
+		<div class="text-center">
+			<iframe width="1000" height="315" src="https://www.youtube.com/embed/cO5hh6KMFjI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+		</div>
+	</div>
+	
+	<div class="container">
+      <h2>Pixel-wise and Contextual Informal Settlement Detection - Predictions in Kibera, Nairobi</h2>
+      <div class="row">
+        <div class="col-md text-center">
+          <img src="images/gt-0.png" width="100%" alt="CCF prediction on low-resolution Sentinel-2 spectral imagery.">
+          <p>CCF prediction on low-resolution Sentinel-2 spectral imagery.</p>
+        </div>
+        <div class="col-md text-center">
+          <img src="images/gt-1.png" width="100%" alt="CNN based prediction trained on VHR imagery.">
+          <p>CNN based prediction trained on VHR imagery.</p>
+        </div>
+        <div class="col-md text-center">
+          <img src="images/gt-2.png" width="100%" alt="Ground truth mask.">
+          <p>Ground truth mask.</p>
+        </div>
+      </div>
+    </div>
+
+	<div class="container">
+	  <h2>Material Pixel-wise Classification with CCFs</h2>
+      <div class="text-center" align="justify">
+        <img src="images/material-classification-black.png" width="70%" alt="Material prediction of Mumbai.">	  
+		<p>Material prediction of Mumbai with n<sub> trees</sub> = 10.
+		<b><i>Left:</i></b> Sentinel-2 image of Mumbai.
+		The area is densely populated and contains several informal settlements. 
+		<b><i>Middle:</i></b> Partially complete ground truth for the Informal 
+		settlements in Mumbai, white represents informal settlements and black represents 
+		environment. The Southern right hand corner is not included in this mask. 
+		<b><i>Right:</i></b> A CCF prediction on the Sentinel-2 L1C spectral data for 
+		determining what materials are present. Black is environment, yellow is metal, blue
+		is shingles and red is thatch.</p>
+	  </div>
+    </div>
+	
+	
+	<div class="container" id="paperdiv">
+      <h2>Papers</h2>
+	  
+	  
+	  <h4 align="center">NeurIPS 2018 Machine Learning for the Developing World Workshop</h4>
+	  <h6 align="center">Generating Material Maps to Map Informal Settlements</h6>
+      <a href="./inf-set.pdf">
+        <div class="thumbs">
+          <img src="images/NeurIPS-18/NeurIPS-18_paper_1.jpg" width="12.1%">
+          <img src="images/NeurIPS-18/NeurIPS-18_paper_2.jpg" width="12.1%">
+          <img src="images/NeurIPS-18/NeurIPS-18_paper_3.jpg" width="12.1%">
+          <img src="images/NeurIPS-18/NeurIPS-18_paper_4.jpg" width="12.1%">
+        </div>
+      </a>
+	  
+	  <h4 align="center">European Space Agency (ESA) Φ-week 2018</h4>
+	  <h6 align="center">Mapping Informal Settlements in Developing Countries with Multi-resolution, Multi-spectral Data</h6>
+      <a href="./inf-set.pdf">
+        <div class="thumbs">
+          <img src="images/ESA-Phi-Week/binary-1.jpg" width="12.1%">
+          <img src="images/ESA-Phi-Week/binary-2.jpg" width="12.1%">
+          <img src="images/ESA-Phi-Week/binary-3.jpg" width="12.1%">
+          <img src="images/ESA-Phi-Week/binary-4.jpg" width="12.1%">
+          <img src="images/ESA-Phi-Week/binary-5.jpg" width="12.1%">
+        </div>
+      </a>
+
+
+	  
+<!--	  <p></p><p></p>
+	  <h4>Mapping Informal Settlements in Developing Countries with Multi-resolution, Multi-spectral Data</h4>
+	  <h6>Presented @European Space Agency (ESA) Φ-week</h6>
+      <!--<h3>Mapping Informal Settlements in Developing Countries using Machine Learning and Low Resolution Multi-spectral Data</h3>
+	  
+	  <a href="./inf-set.pdf">
+        <div class="thumbs">
+          <img src="images/fdl-europe-team-01.jpg" width="12.1%">
+          <img src="images/fdl-europe-team-02.jpg" width="12.1%">
+          <img src="images/fdl-europe-team-03.jpg" width="12.1%">
+          <img src="images/fdl-europe-team-04.jpg" width="12.1%">
+          <img src="images/fdl-europe-team-05.jpg" width="12.1%">
+          <img src="images/fdl-europe-team-06.jpg" width="12.1%">
+        </div>
+      </a>
+      <div>
+        <pre class="citation">
+          Cite as: \cite{TODO}
+
+          @InProceedings{TODO,
+            author = {Patrick Helber, Bradley Gram-Hansen, Indhu Varatharajan, Faiza Azam, Alejandro Coca-Castro, Veronika Kopackova, Piotr Bilinski},
+            title = {Mapping Informal Settlements in Developing Countries using Machine Learning and Low Resolution Multi-spectral Data},
+            booktitle = {TODO},
+            month = {January},
+            year = {2019}
+          }
+        </pre>
+      </div>-->	
+  
+	  
+	  <p></p><p></p>
+	  <h4 align="center">AAAI/ACM Conference on AI, Ethics, and Society 2019 <em>(submitted)</em></h4>
+	  <h6 align="center">Mapping Informal Settlements in Developing Countries using Machine Learning and Low Resolution Multi-spectral Data</h6>
+      <!--<h3>Mapping Informal Settlements in Developing Countries using Machine Learning and Low Resolution Multi-spectral Data</h3>
+	  -->
+	  <a href="./inf-set.pdf">
+        <div class="thumbs">
+          <img src="images/AIES-19/AIES-19_paper_1.jpg" width="12.1%">
+          <img src="images/AIES-19/AIES-19_paper_2.jpg" width="12.1%">
+          <img src="images/AIES-19/AIES-19_paper_3.jpg" width="12.1%">
+          <img src="images/AIES-19/AIES-19_paper_4.jpg" width="12.1%">
+          <img src="images/AIES-19/AIES-19_paper_5.jpg" width="12.1%">
+          <img src="images/AIES-19/AIES-19_paper_6.jpg" width="12.1%">
+          <img src="images/AIES-19/AIES-19_paper_7.jpg" width="12.1%">
+        </div>
+      </a>
+      <div>
+        <pre class="citation">
+		
+          Cite as: \cite{helber2018generating}
+		  
+          @article{helber2018generating,
+           title = {Generating Material Maps to Map Informal Settlements},
+           author = {Helber, Patrick and Gram-Hansen, Bradley and Varatharajan, Indhu and Azam, Faiza and Coca-Castro, Alejandro 
+                     and Kopackova, Veronika and Bilinski, Piotr},
+           journal={arXiv preprint arXiv:xxxx.xxxx},
+           year = {2018}
+          }
+
+          Cite as: \cite{helber2018mapping}
+		  
+          @article{helber2018mapping,
+           title = {Mapping Informal Settlements in Developing Countries with Multi-resolution, Multi-spectral Data},
+           author = {Helber, Patrick and Gram-Hansen, Bradley and Varatharajan, Indhu and Azam, Faiza and Coca-Castro, Alejandro 
+                     and Kopackova, Veronika and Bilinski, Piotr},
+           journal={arXiv preprint arXiv:xxxx.xxxx},
+           year = {2018}
+          }
+		  
+          Cite as: \cite{gram-hansen2019mapping}
+
+          @article{gram-hansen2019mapping,
+            title = {Mapping Informal Settlements in Developing Countries using Machine Learning and Low Resolution Multi-spectral Data},
+            author = {Gram-Hansen, Bradley and Helber, Patrick and Varatharajan, Indhu and Azam, Faiza and Coca-Castro, Alejandro
+                      and Kopackova, Veronika and Bilinski, Piotr},
+            journal={arXiv preprint arXiv:xxxx.xxxx},
+            year = {2019}
+          }
+        </pre>
+      </div>
+    </div>
+	
+	
+    <div class="container">
+      <h2>Supplemental Material</h2>
+	  
+	  <p>Additional material will be published soon!</p>
+
+      <div class="row">
+        <div class="col-sm text-center">
+          <a href="#"><img src="images/supp-img.png" width="65%" alt="PDF with supplementary material."></a>
+          <p>Further Figures and Experiments</p>
+        </div>
+		<div class="col-sm text-center">
+          <a href="#"><img src="images/slide-desk.png" width="71%" alt="Slides."></a>
+          <p>Slides</p>
+        </div>
+        <div class="col-sm text-center">
+          <a href="#"><img src="images/Octocat.png" width="65%" alt="Data"></a>
+          <p>Data</p>
+        </div>
+        <div class="col-sm text-center">
+          <a href="#"><img src="images/github-black.png" width="65%" alt="Code"></a>
+          <p>Code</p>
+        </div>
+      </div>
+    </div>
+	
+	<div class="container">
+      <h2>Team</h2>
+        <div class="thumb-heads text-center">
+          <a href="mailto:patrick.helber@dfki.de"><img src="images/pat-black.png" width="10%"></a>
+          <a href="mailto:bradley@robots.ox.ac.uk"><img src="images/brad-black.png" width="10%"></a>
+          <a href="mailto:indhu.varatharajan@dlr.de"><img src="images/indhu-black.png" width="10%"></a>
+          <a href="mailto:fazam@hotmail.de"><img src="images/fazia-black.png" width="10%"></a>
+		  <a href="mailto:alejandro.coca_castro@kcl.ac.uk"><img src="images/alejandro-black.png" width="10%"></a>
+		  <a href="mailto:veronika.kopackova@geology.cz"><img src="images/veronika-black.png" width="10%"></a>
+		  <a href="mailto:piotrb@robots.ox.ac.uk"><img src="images/piotr-black.png" width="10%"></a>
+		</div>
+	</div>
+	
+    <div class="container">
+      <h2>Acknowledgments</h2>
+      <p align="justify">This project was executed during the Frontier Development Lab(FDL), Europe program, a partnership between the Phi-Lab at ESA, the Satellite Applications(SA) Catapult, Nvidia Corporation, Oxford University and Kellogg College. We gratefully acknowledge the support of Adrien Muller and Tom Jones of SA Catapult for their useful comments, providing very-high-resolution imagery and ground truth annotations for Nairobi. We thank UNICEF, in particular Do-Hyung Kim and Clara Palau Montava, for valuable discussions and AIData for access to geo-located Afrobarometer data. We thank Nvidia for computation resources. We thank Yarin Gal for his helpful comments. Patrick Helber was supported by the NVIDIA AI Lab program and the BMBF project DeFuseNN (Grant 01IW17002). Bradley Gram-Hansen was also supported by the UK EPSRC CDT in Autonomous Intelligent Machines and Systems.</p>
+	  </div>
+
+    <div class="container">
+		<div class="text-center">
+			<img src="images/partners-black.png">
+		</div>
+    </div>
+
+    <div id="footer" class="container">
+		<h6>In compliance with GDPR, please be aware that anonymous Google Analytics is used for this webpage.</a></h6>
+    </div>
+	
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
